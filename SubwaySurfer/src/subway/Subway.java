@@ -153,7 +153,7 @@ public class Subway
         return null;
     }
     
-    private Station getStation(String stationname){
+    public Station getStation(String stationname){
     	for(Iterator i = stations.iterator(); i.hasNext();){
     		Station station = (Station) i.next();
     		if(station.getName().equals(stationname)){
@@ -219,8 +219,13 @@ public class Subway
     		conn2.setAvailable(bool);
     		List liststat1 = (List) network.get(station1);
     		List liststat2 = (List) network.get(station2);
-    		liststat1.remove(station2);
-    		liststat2.remove(station1);
+    		if(!bool){
+    			liststat1.remove(station2);
+    			liststat2.remove(station1);
+    		} else{
+    			liststat1.add(station2);
+    			liststat2.add(station1);
+    		}
     		//System.out.println("The availabity of connection " + conn.getLineName() + " is changed");
     	} else{
     		System.out.println("The station are not found!");
